@@ -34,7 +34,7 @@ class RobotNameSpecs extends FunSpec with Matchers {
   // The Robot code needs to be efficient enough to allow all 676,000 unique names to be generated.
   it("a large number of new instances have unique names") {
     implicit val robotName: RobotName = new RobotName {
-      val allowedNames: Seq[String] = for {
+      val names: Stream[String] = for {
         letter1 <- letters
         letter2 <- letters
         digit1 <- digits

@@ -1,5 +1,5 @@
-import scala.annotation.tailrec
-import scala.collection.mutable
+import java.util.concurrent.atomic.AtomicReference
+import scala.language.postfixOps
 
 class Robot(implicit N: RobotName = DefaultRobotName) {
   private var _name: String = N.name
@@ -10,38 +10,28 @@ class Robot(implicit N: RobotName = DefaultRobotName) {
 }
 
 trait RobotName {
-  val allowedNames: Seq[String]
+  val names: Stream[String]
 
-  lazy val letters: Seq[String] =
-    ('A' to 'Z').map(_.toString)
+  lazy val letters: Stream[String] =
+    ('A' to 'Z').toStream.map(_.toString)
 
-  lazy val digits: Seq[Int] =
-    1 to 9
+  lazy val digits: Stream[Int] =
+    (1 to 9).toStream
 
   val random = new scala.util.Random()
 
-  private val usedIndexes = mutable.HashSet.empty[Int]
+  private lazy val availableNames: AtomicReference[Stream[String]] =
+    new AtomicReference[Stream[String]](random shuffle names)
 
-  def name: String = synchronized {
-    @tailrec
-    def newName: String = {
-      val index = random.nextInt(allowedNames.size) + 1
-
-      if (usedIndexes contains index) {
-        newName
-      } else {
-        val name: String = allowedNames(index)
-        usedIndexes += index
-        name
-      }
-    }
-
-    newName
+  def name: String = {
+    val h #:: t = availableNames.get
+    availableNames set t
+    h
   }
 }
 
 object DefaultRobotName extends RobotName {
-  val allowedNames: Seq[String] = for {
+  val names: Stream[String] = for {
     letter1 <- letters
     letter2 <- letters
     digit1 <- digits
