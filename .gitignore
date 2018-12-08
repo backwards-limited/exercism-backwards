@@ -23,3 +23,4 @@ project/plugins/project/
 .exercism
 .stack-work
 .keep
+.lein-failures
