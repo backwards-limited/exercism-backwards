@@ -1,5 +1,9 @@
 # Haskell
 
+```bash
+$ stack test
+```
+
 ## Hello World
 
 - Check out
