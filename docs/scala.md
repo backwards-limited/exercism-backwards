@@ -1,9 +1,5 @@
 # Scala
 
-exercism configure --token=MY_TOKEN --workspace=/Users/davidainslie/workspace/backwards/exercism-backwards
-
-Always within the **root** of this module **exercism-backwards**
-
 ## Hello World
 
 - Check out
@@ -30,4 +26,18 @@ $ exercism download --exercise=robot-name --track=scala
 
 ```bash
 $ exercism submit /Users/davidainslie/workspace/backwards/exercism-backwards/scala/robot-name/src/main/scala/Robot.scala /Users/davidainslie/workspace/backwards/exercism-backwards/scala/robot-name/src/test/scala/RobotNameTest.scala
+```
+
+## Beer Song
+
+- Check out
+
+```bash
+$ exercism download --exercise=beer-song --track=scala
+```
+
+- Submit
+
+```bash
+$ exercism submit /Users/davidainslie/workspace/backwards/exercism-backwards/scala/beer-song/src/main/scala/BeerSong.scala /Users/davidainslie/workspace/backwards/exercism-backwards/scala/beer-song/src/test/scala/BeerSongTest.scala
 ```
