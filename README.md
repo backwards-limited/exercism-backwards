@@ -10,10 +10,10 @@ $ exercism configure --token=MY_TOKEN --workspace=/Users/davidainslie/workspace/
 
 ## Table of Contents
 
-- [Scala](docs/scala.md)
+- [Scala](scala/README.md)
 
-- [Haskell](docs/haskell.md)
+- [Haskell](haskell/README.md)
 
-- [Clojure](docs/clojure.md)
+- [Clojure](clojure/README.md)
 
 - [Python](docs/python.md)
