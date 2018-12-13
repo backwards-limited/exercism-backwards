@@ -41,3 +41,17 @@ $ exercism download --exercise=beer-song --track=scala
 ```bash
 $ exercism submit /Users/davidainslie/workspace/backwards/exercism-backwards/scala/beer-song/src/main/scala/BeerSong.scala /Users/davidainslie/workspace/backwards/exercism-backwards/scala/beer-song/src/test/scala/BeerSongTest.scala
 ```
+
+## House
+
+- Check out
+
+```bash
+$ exercism download --exercise=house --track=scala
+```
+
+- Submit
+
+```bash
+$ exercism submit /Users/davidainslie/workspace/backwards/exercism-backwards/scala/house/src/main/scala/House.scala /Users/davidainslie/workspace/backwards/exercism-backwards/scala/house/src/test/scala/HouseTest.scala 
+```
