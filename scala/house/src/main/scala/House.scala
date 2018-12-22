@@ -17,12 +17,15 @@ object House {
   )
 
   def recite(startLine: Int, endLine: Int): String = {
+    def recite(startLine: Int): String =
+      "This is " + (startLine - 1 to 0 by - 1).map(verses.apply).mkString(" ")
+
     @tailrec
     def go(startLine: Int, lines: Vector[String]): Vector[String] = {
       if (startLine == endLine) {
-        lines ++ Vector((startLine - 1 to 0 by - 1).map(verses.apply).mkString("This is ", " ", ""))
+        lines ++ Vector(recite(startLine))
       } else {
-        go(startLine + 1, lines ++ Vector((startLine - 1 to 0 by - 1).map(verses.apply).mkString("This is ", " ", "\n")))
+        go(startLine + 1, lines ++ Vector(recite(startLine) + "\n"))
       }
     }
 
