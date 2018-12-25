@@ -17,8 +17,9 @@
   (map #(Character/digit % 10) (str num)))
 
 (defn armstrong? [num]
-  (defn calc-armstrong [num]
-    (->> (map #(pow % (count (str num))) (digits num))
-         (reduce +)))
-  
-  (= (long num) (long (calc-armstrong num))))
+  (letfn [
+    (calc-armstrong [num]
+      (->> (map #(pow % (count (str num))) (digits num))
+           (reduce +)))]
+
+    (= (long num) (long (calc-armstrong num)))))
