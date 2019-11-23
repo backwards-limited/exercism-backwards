@@ -1,34 +1,26 @@
-import scala.annotation.tailrec
-
 object House {
   val verses: Vector[String] = Vector(
-    "the house that Jack built.",
-    "the malt that lay in",
-    "the rat that ate",
-    "the cat that killed",
-    "the dog that worried",
-    "the cow with the crumpled horn that tossed",
-    "the maiden all forlorn that milked",
-    "the man all tattered and torn that kissed",
-    "the priest all shaven and shorn that married",
-    "the rooster that crowed in the morn that woke",
-    "the farmer sowing his corn that kept",
-    "the horse and the hound and the horn that belonged to"
+    "house that Jack built.",
+    "malt that lay in ",
+    "rat that ate ",
+    "cat that killed ",
+    "dog that worried ",
+    "cow with the crumpled horn that tossed ",
+    "maiden all forlorn that milked ",
+    "man all tattered and torn that kissed ",
+    "priest all shaven and shorn that married ",
+    "rooster that crowed in the morn that woke ",
+    "farmer sowing his corn that kept ",
+    "horse and the hound and the horn that belonged to "
   )
 
-  def recite(startLine: Int, endLine: Int): String = {
-    def recite(startLine: Int): String =
-      "This is " + (startLine - 1 to 0 by - 1).map(verses.apply).mkString(" ")
+  def recite(start: Int, end: Int): String = {
+    def recite(start: Int): String =
+      s"""This is ${(start to 0 by -1).map(line => s"the ${verses(line)}").mkString}"""
 
-    @tailrec
-    def go(startLine: Int, lines: Vector[String]): Vector[String] = {
-      if (startLine == endLine) {
-        lines ++ Vector(recite(startLine))
-      } else {
-        go(startLine + 1, lines ++ Vector(recite(startLine) + "\n"))
-      }
-    }
+    def recital(lines: Vector[String], verse: Int): Vector[String] =
+      lines :+ recite(verse - 1)
 
-    go(startLine, Vector.empty[String]).mkString("", "", "\n\n")
+    (start to end).foldLeft(Vector.empty[String])(recital).mkString("", "\n", "\n\n")
   }
 }

@@ -2,7 +2,7 @@ import org.scalatest._
 import collection.mutable
 
 /** @version created manually **/
-class RobotNameSpecs extends FunSpec with Matchers {
+class RobotNameTest extends FunSpec with Matchers {
   val nameRegex = """[A-Z]{2}\d{3}"""
 
   it ("has a name") {
@@ -29,12 +29,11 @@ class RobotNameSpecs extends FunSpec with Matchers {
   }
 
   // Making this test pass is an optional extra exercise, should you want more of a challenge.
-  // It's ignored by default, to make it run, simply change "ignore" below to "it".
   // There are 26^2 * 1,000 = 676,000 possible robot names - you have to ensure that none are repeated.
   // The Robot code needs to be efficient enough to allow all 676,000 unique names to be generated.
   it("a large number of new instances have unique names") {
     implicit val robotName: RobotName = new RobotName {
-      val names: Stream[String] = for {
+      val names: LazyList[String] = for {
         letter1 <- letters
         letter2 <- letters
         digit1 <- digits
@@ -45,11 +44,14 @@ class RobotNameSpecs extends FunSpec with Matchers {
     }
 
     val alreadySet = mutable.HashSet.empty[String]
-    for(_ <- 0 until 676000 - 6) { // as 6 robot names are generated in the tests above!!
+
+    for (_ <- 0 until 676000 - 6) { // as 6 robot names are generated in the tests above!!
       val name = new Robot().name
+
       if (alreadySet contains name) {
         fail(s"$name is repeated")
       }
+
       alreadySet += name
     }
   }

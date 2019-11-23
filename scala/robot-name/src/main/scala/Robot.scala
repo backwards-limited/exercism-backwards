@@ -1,37 +1,38 @@
 import java.util.concurrent.atomic.AtomicReference
 import scala.language.postfixOps
 
-class Robot(implicit N: RobotName = DefaultRobotName) {
-  private var _name: String = N.name
+class Robot(implicit RobotName: RobotName = DefaultRobotName) {
+  private var _name: String = RobotName.name
 
   def name: String = _name
 
-  def reset(): Unit = _name = N.name
+  def reset(): Unit =
+    _name = RobotName.name
 }
 
 trait RobotName {
-  val names: Stream[String]
+  val names: LazyList[String]
 
-  lazy val letters: Stream[String] =
-    ('A' to 'Z').toStream.map(_.toString)
+  lazy val letters: LazyList[String] =
+    LazyList.from('A' to 'Z').map(_.toString)
 
-  lazy val digits: Stream[Int] =
-    (1 to 9).toStream
+  lazy val digits: LazyList[Int] =
+    LazyList.from(1 to 9)
 
   val random = new scala.util.Random()
 
-  private lazy val availableNames: AtomicReference[Stream[String]] =
-    new AtomicReference[Stream[String]](random shuffle names)
+  private lazy val availableNames: AtomicReference[LazyList[String]] =
+    new AtomicReference[LazyList[String]](random shuffle names)
 
   def name: String = {
-    val h #:: t = availableNames.get
+    val h #:: t = availableNames.get()
     availableNames set t
     h
   }
 }
 
 object DefaultRobotName extends RobotName {
-  val names: Stream[String] = for {
+  val names: LazyList[String] = for {
     letter1 <- letters
     letter2 <- letters
     digit1 <- digits

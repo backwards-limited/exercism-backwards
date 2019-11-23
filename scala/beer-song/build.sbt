@@ -1,3 +1,3 @@
 name := "beer-song"
-scalaVersion := "2.12.2"
-libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.1" % "test"
+scalaVersion := "2.13.1"
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.8" % "test"
