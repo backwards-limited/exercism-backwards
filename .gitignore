@@ -27,3 +27,4 @@ project/plugins/project/
 .vscode
 .pytest_cache
 __pycache__
+scala copy

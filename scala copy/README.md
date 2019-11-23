@@ -1,1 +1,0 @@
-# Scala Exercism by Backwards
