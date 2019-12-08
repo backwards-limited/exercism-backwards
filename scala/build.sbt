@@ -10,7 +10,8 @@ lazy val root = Project("scala-exercism-backwards", file("."))
     `beer-song`,
     `house`,
     `food-chain`,
-    `leap`
+    `leap`,
+    `armstrong-numbers`
   )
 
 lazy val `hello-world` = Project(file("hello-world"))
@@ -21,3 +22,5 @@ lazy val `beer-song` = Project(file("beer-song"))
 lazy val `house` = Project(file("house"))
 lazy val `food-chain` = Project(file("food-chain"))
 lazy val `leap` = Project(file("leap"))
+lazy val `collatz-conjecture` = Project(file("collatz-conjecture"))
+lazy val `armstrong-numbers` = Project(file("armstrong-numbers"))
